@@ -22,4 +22,9 @@ window.player2 = d3.select('main')
 d3.select('main').on('mousemove', function () {
    x = d3.mouse(this)[0];
    y = d3.mouse(this)[1];
+   d3.select('#player')
+     .style({
+      'top' : y,
+      'left' : x
+     });
 });
