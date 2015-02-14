@@ -1,21 +1,26 @@
 
-function generateSVG(num) {
-  var asteroids = createAsteroids(num);
 
+function initializeSVGRender(asteroids) {
+  d3.select('.gameboard')
+      .selectAll('svg')
+      .data(asteroids)
+      .enter()
+      .append('svg');
+}
+
+function updateSVGRender(asteroids) {
   d3.select('.gameboard')
     .selectAll('svg')
     .data(asteroids)
-    .enter()
-    .append('svg')
-    .style('height', function(d) {
-      return d.height;
-    })
-    .style('width', function(d) {
-      return d.width;
-    })
+    .style({
+      'position' : 'absolute',
+      'height' : function(d) { return d.height },
+      'width' : function(d) { return d.width },
+      'top' : function(d) { return d.top },
+      'left' : function(d) { return d.left }
+      })
       .append('circle')
         .attr('cx', function(d) {
-          console.log(d);
           return d.width / 2;
         })
         .attr('cy', function(d) {
@@ -27,6 +32,14 @@ function generateSVG(num) {
         .attr('r', function(d) {
           return d.radius;
         });
-
 }
-generateSVG(10);
+
+
+function generateSVG(num) {
+  var asteroids = createAsteroids(num);
+  initializeSVGRender(asteroids);
+  setInterval(function() {
+    updateSVGRender.call(updateSVGRender, asteroids);
+  }, 3000);
+}
+

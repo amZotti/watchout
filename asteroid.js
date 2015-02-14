@@ -9,6 +9,9 @@ function createAsteroids(num) {
     this.left = null;
     this.setPosition();
     this.color = this.randomColor();
+    this.setInterval();
+    window.test = this;
+
   }
 
   Asteroid.prototype.randomColor = function() {
@@ -20,6 +23,16 @@ function createAsteroids(num) {
     this.top = g.random(window.innerHeight);
     this.left = g.random(window.innerWidth);
   };
+
+  Asteroid.prototype.setInterval = function() {
+    var context = this;
+    function exec() {
+      context.setPosition();
+      setTimeout(exec, 3000);
+    }
+    exec();
+  };
+
 
   var asteroids = [];
   for (var i = 0;i < num;i++) {

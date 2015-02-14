@@ -4,17 +4,11 @@ function scoreBoardSetup() {
   var color = '#F0F0F0';
   d3.select('.scoreboard')
     .selectAll('div')
-    .style('background-color', function() {
-      return sexyBlue;
-    })
-    .style('color', function() {
-      return color;
-    })
-    .style('font-family', function() {
-      return 'sans-serif';
-    })
-    .style('font-weight', function() {
-      return 'bold';
+    .style({
+      "background-color" : sexyBlue,
+      "color" : color,
+      'font-family' : 'sans-serif',
+      'font-weight' : 'bold'
     });
 }
 
@@ -23,34 +17,24 @@ function boardSetup() {
   var width = '100%';
   var BGcolor = 'black';
   d3.select('.gameboard')
-    .style('width', function() {
-      return width;
-    })
-    .style('height', function() {
-      return height;
-    })
-    .style('background', function() {
-      return BGcolor;
+    .style({
+      'width' : width,
+      'height' : height,
+      'background' : BGcolor
     });
 }
 
 function documentSetup() {
   var BGcolor = '#757571';
-  d3.select('body').style('margin', function() {
-    return '0px';
-  })
-  .style('color', function() {
-    return 'white';
-  })
-  .style('padding', function() {
-    return '0px';
+  d3.select('body').style({
+    'margin': '0px',
+    'color': 'white',
+    'padding': '0px'
   });
 
-  d3.select('main').style('background-color', function() {
-    return BGcolor;
-  })
-  .style('padding', function() {
-    return '1em';
+  d3.select('main').style({
+    'background-color' : BGcolor,
+    'padding' : '1em'
   });
 }
 
@@ -58,6 +42,7 @@ function init() {
   documentSetup();
   boardSetup();
   scoreBoardSetup();
+  generateSVG(10);
 
 }
 
