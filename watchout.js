@@ -1,8 +1,9 @@
-var x = 0;
+
 var player = {
   size: '10',
 };
-window.player2 = d3.select('main')
+
+d3.select('main')
   .data([player])
   .append('svg')
   .attr('id', 'player')

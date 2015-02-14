@@ -20,15 +20,15 @@ function createAsteroids(num) {
   }
 
   Asteroid.prototype.setPosition = function() {
-    this.top = g.random(window.innerHeight);
-    this.left = g.random(window.innerWidth);
+    this.top = g.random(-100, window.innerHeight);
+    this.left = g.random(-100, window.innerWidth);
   };
 
   Asteroid.prototype.setInterval = function() {
     var context = this;
     function exec() {
       context.setPosition();
-      setTimeout(exec, g.random(1,1000));
+      setTimeout(exec, g.random(500,1000));
     }
     exec();
   };
