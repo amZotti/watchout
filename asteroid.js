@@ -1,4 +1,4 @@
-function createAsteroid(num) {
+function createAsteroids(num) {
   num = num || 1;
   function Asteroid() {
     var randomFactor = g.random(100);
@@ -8,6 +8,12 @@ function createAsteroid(num) {
     this.top = null;
     this.left = null;
     this.setPosition();
+    this.color = this.randomColor();
+  }
+
+  Asteroid.prototype.randomColor = function() {
+    var arr = ['brown', 'red', 'gray'];
+    return arr[g.random(arr.length)];
   }
 
   Asteroid.prototype.setPosition = function() {

@@ -1,40 +1,25 @@
-// start slingin' some d3 here.
 
 function generateSVG(num) {
-  var array = [];
-  array.length = num;
-  var string = 'test';
-
-  function asteroid(prop){
-    var randomFactor = Math.random() * 40 + 1;
-    var asteroid = {
-      width: 100,
-      height: 100,
-      radius: randomFactor,
-      color: 'brown'
-    }
-
-    return asteroid[prop];
-  }
+  var asteroids = createAsteroids(num);
 
   d3.select('.gameboard')
     .selectAll('svg')
-    .data(array)
-    //new
+    .data(asteroids)
     .enter()
     .append('svg')
       .append('circle')
-        .attr('cx', function() {
-          return asteroid("width") / 2;
+        .attr('cx', function(d) {
+          console.log(d);
+          return d.width / 2;
         })
-        .attr('cy', function() {
-          return asteroid("height") / 2;
+        .attr('cy', function(d) {
+          return d.height / 2;
         })
-        .attr('fill', function() {
-          return asteroid("color");
+        .attr('fill', function(d) {
+          return d.color;
         })
-        .attr('r', function() {
-          return asteroid("radius");
+        .attr('r', function(d) {
+          return d.radius;
         });
 
 }
