@@ -10,7 +10,7 @@ function createAsteroids(num) {
     this.setPosition();
     this.color = this.randomColor();
     this.setInterval();
-    window.test = this;
+    this.transitionSpeed = g.random(250, 1250);
 
   }
 
@@ -28,7 +28,7 @@ function createAsteroids(num) {
     var context = this;
     function exec() {
       context.setPosition();
-      setTimeout(exec, 600);
+      setTimeout(exec, g.random(1,1000));
     }
     exec();
   };

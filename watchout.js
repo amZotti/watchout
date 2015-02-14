@@ -1,47 +1,25 @@
+var x = 0;
+var player = {
+  size: '10',
+};
+window.player2 = d3.select('main')
+  .data([player])
+  .append('svg')
+  .attr('id', 'player')
+  .style({
+    'position' : 'absolute',
+    'height' : function(d) { return d.size * 2 + 'px' },
+    'width' : function(d) { return d.size * 2 + 'px' },
+    'top' : '300px',
+    'left' : '300px'
+  })
+    .append('circle')
+      .attr('cx', function(d) { return d.size})
+      .attr('cy', function(d) { return d.size})
+      .attr('fill', 'yellow')
+      .attr('r', function(d) { return d.size});
 
-
-function initializeSVGRender(asteroids) {
-  d3.select('.gameboard')
-      .selectAll('svg')
-      .data(asteroids)
-      .enter()
-      .append('svg');
-}
-
-function updateSVGRender(asteroids) {
-  d3.select('.gameboard')
-    .selectAll('svg')
-    .data(asteroids)
-    .style({
-      'position' : 'absolute',
-      'height' : function(d) { return d.height },
-      'width' : function(d) { return d.width },
-      'top' : function(d) { return d.top },
-      'left' : function(d) { return d.left },
-      'transition': '0.5s',
-      '-webkit-transition' : '0.5s'
-      })
-      .append('circle')
-        .attr('cx', function(d) {
-          return d.width / 2;
-        })
-        .attr('cy', function(d) {
-          return d.height / 2;
-        })
-        .attr('fill', function(d) {
-          return d.color;
-        })
-        .attr('r', function(d) {
-          return d.radius;
-        });
-}
-
-
-function generateSVG(num) {
-  var asteroids = createAsteroids(num);
-  initializeSVGRender(asteroids);
-  setInterval(function() {
-    updateSVGRender.call(updateSVGRender, asteroids);
-  }, 600);
-}
-
+d3.select('main').on('mousemove', function () {
+   x = d3.mouse(this)[0];
+   y = d3.mouse(this)[1];
+});
