@@ -7,6 +7,12 @@ function generateSVG(num) {
     .data(asteroids)
     .enter()
     .append('svg')
+    .style('height', function(d) {
+      return d.height;
+    })
+    .style('width', function(d) {
+      return d.width;
+    })
       .append('circle')
         .attr('cx', function(d) {
           console.log(d);
