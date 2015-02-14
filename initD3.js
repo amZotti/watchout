@@ -39,6 +39,9 @@ function documentSetup() {
   d3.select('body').style('margin', function() {
     return '0px';
   })
+  .style('color', function() {
+    return 'white';
+  })
   .style('padding', function() {
     return '0px';
   });
