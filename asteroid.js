@@ -28,7 +28,7 @@ function createAsteroids(num) {
     var context = this;
     function exec() {
       context.setPosition();
-      setTimeout(exec, 3000);
+      setTimeout(exec, 600);
     }
     exec();
   };

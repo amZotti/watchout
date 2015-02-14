@@ -17,7 +17,9 @@ function updateSVGRender(asteroids) {
       'height' : function(d) { return d.height },
       'width' : function(d) { return d.width },
       'top' : function(d) { return d.top },
-      'left' : function(d) { return d.left }
+      'left' : function(d) { return d.left },
+      'transition': '0.5s',
+      '-webkit-transition' : '0.5s'
       })
       .append('circle')
         .attr('cx', function(d) {
@@ -40,6 +42,6 @@ function generateSVG(num) {
   initializeSVGRender(asteroids);
   setInterval(function() {
     updateSVGRender.call(updateSVGRender, asteroids);
-  }, 3000);
+  }, 600);
 }
 
