@@ -1,5 +1,5 @@
 //Disallow access to scoreboard by using IIFE
-(function() {
+g.reset = (function(){
   var score = 0;
   var highScore = 0;
 
@@ -24,4 +24,8 @@
       .text(highScore);
   }
   setInterval(setScore, 87.5);
+
+  return function() {
+    score = 0;
+  }
 })();

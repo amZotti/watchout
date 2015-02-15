@@ -39,27 +39,12 @@ function documentSetup() {
 }
 
 function initializeSVGRender(asteroids) {
-  d3.select('.gameboard')
+  window.asteroids = d3.select('.gameboard')
       .selectAll('svg')
       .data(asteroids)
       .enter()
-      .append('svg');
-  updateSVGRender(asteroids);
-}
-
-function updateSVGRender(asteroids) {
-  d3.select('.gameboard')
-    .selectAll('svg')
-    .data(asteroids)
-    .style({
-      'position' : 'absolute',
-      'height' : function(d) { return d.height },
-      'width' : function(d) { return d.width },
-      'top' : function(d) { return d.top },
-      'left' : function(d) { return d.left },
-      'transition': function(d) { return (d.transitionSpeed / 1000) + 's'},
-      '-webkit-transition' : function(d) { return (d.transitionSpeed / 1000) + 's' }
-      })
+      .append('svg')
+      .attr('class', 'asteroid')
       .append('circle')
         .attr('cx', function(d) {
           return d.width / 2;
@@ -73,6 +58,24 @@ function updateSVGRender(asteroids) {
         .attr('r', function(d) {
           return d.radius;
         });
+
+  updateSVGRender(asteroids);
+}
+
+function updateSVGRender(asteroids) {
+  d3.select('.gameboard')
+    .selectAll('svg')
+    .data(asteroids)
+    .transition()
+    .duration(function(d) { return d.transitionSpeed })
+    .ease('cubic-in-out')
+    .style({
+      'position' : 'absolute',
+      'height' : function(d) { return d.height },
+      'width' : function(d) { return d.width },
+      'top' : function(d) { return d.top },
+      'left' : function(d) { return d.left },
+      })
 }
 
 function generateSVG(num) {

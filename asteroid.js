@@ -11,7 +11,8 @@ function createAsteroids(num) {
     this.color = this.randomColor();
     this.setInterval();
     this.transitionSpeed = g.random(250, 1250);
-
+    this.ticker = 0;
+    this.duration = 100;
   }
 
   Asteroid.prototype.randomColor = function() {
@@ -20,8 +21,12 @@ function createAsteroids(num) {
   }
 
   Asteroid.prototype.setPosition = function() {
-    this.top = g.random(-100, window.innerHeight);
-    this.left = g.random(-100, window.innerWidth);
+    this.ticker++;
+    if (this.ticker > this.duration) {
+      this.ticker = 0;
+      this.top = g.random(-100, window.innerHeight);
+      this.left = g.random(-100, window.innerWidth);
+    }
   };
 
   Asteroid.prototype.setInterval = function() {

@@ -1,6 +1,8 @@
 
 var player = {
   size: '10',
+  top: 0,
+  left: 0
 };
 
 d3.select('main')
@@ -21,11 +23,36 @@ d3.select('main')
       .attr('r', function(d) { return d.size});
 
 d3.select('main').on('mousemove', function () {
-   x = d3.mouse(this)[0];
-   y = d3.mouse(this)[1];
+   player.left = d3.mouse(this)[0];
+   player.top = d3.mouse(this)[1];
    d3.select('#player')
      .style({
-      'top' : y,
-      'left' : x
+      'top' : player.top,
+      'left' : player.left
      });
+});
+
+
+d3.timer(function() {
+  var top = player.top;
+  var left = player.left;
+
+  asteroids.each(function(asteroid) {
+
+    if (Math.abs(asteroid.top - top) < 50 && Math.abs(asteroid.left - left) < 50) {
+      g.reset();
+      d3.select('.collisions')
+        .select('span')
+        .text(g.collisions++);
+      d3.select('main')
+        .style('background-color', 'red');
+      setTimeout(function() {
+         d3.select('main').style('background-color', 'black');
+      }, 50);
+        // .transition()
+        // .duraction(1000)
+        // .style('background-color', 'black');
+    }
+    asteroid.setPosition();
+  });
 });
